@@ -6,13 +6,13 @@ declare_id!("6kdiEuXzdvAMThDg9rWtvYm3BBUH8PGTkJhyAKnLrv7G");
 pub mod crowdfunding_program {
     use super::*;
 
-    pub fn create(ctx: Context<Create>, name: String, description: String, target_amount: u64, image_url: String) -> Result<()> {
+    pub fn create(ctx: Context<Create>, name: String, description: String, target_amount: u64, imageUrl: String) -> Result<()> {
         let campaign = &mut ctx.accounts.campaign;
         campaign.name = name;
         campaign.description = description;
         campaign.amount_donated = 0;
         campaign.target_amount = target_amount;
-        campaign.image_url = image_url;
+        campaign.imageUrl = imageUrl;
         campaign.owner = *ctx.accounts.user.key;
         Ok(())
     }
@@ -84,7 +84,7 @@ pub struct Campaign {
     pub description: String,
     pub amount_donated: u64,
     pub target_amount: u64,
-    pub image_url: String,
+    pub imageUrl: String,
 }
 
 #[error_code]

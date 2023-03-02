@@ -61,7 +61,7 @@ export const CampaignsTable: React.FC<CampaignsTableProps> = ({
                 <Card key={key} className="m-3" style={{ width: '18rem' }}>
                     <Card.Img
                         variant="top"
-                        src={c.account.image_url}
+                        src={c.account.imageUrl}
                         style={{ height: '10rem' }}
                     />
 
