@@ -24,53 +24,56 @@ interface CampaignsViewProps {
     network: string;
 }
 
-export const CampaignsView: React.FC<CampaignsViewProps> = ({ network }) => {
+const CampaignsView: React.FC<CampaignsViewProps> = ({ network }) => {
     const wallet = useWallet();
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [targetAmount, setTargetAmount] = useState<number>(1);
-    const [imageUrl, setImageUrl] = useState(''); // New state for image URL
+    const [imageUrl, setImageUrl] = useState('');
 
-    const getProgram = () => {
-        /* create the provider and return it to the caller */
-        const connection = new Connection(network, opts.preflightCommitment);
-        const provider = new AnchorProvider(connection, wallet as any, opts);
-        /* create the program interface combining the idl, program ID, and provider */
-        const program = new Program(idl as Idl, programId, provider);
-        return program;
-    };
+    const connection = new Connection(network, opts.preflightCommitment);
+    const provider = new AnchorProvider(connection, wallet as any, opts);
+    const program = new Program(idl as Idl, programId, provider);
 
-    const program = getProgram();
-
-    const onNameChange = (e: ChangeEvent<any>) => {
+    const onNameChange = (e: ChangeEvent<HTMLInputElement>) => {
         setName(e.target.value);
     };
-    const onDescriptionChange = (e: ChangeEvent<any>) => {
+    const onDescriptionChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         setDescription(e.target.value);
     };
-    const onTargetAmountChange = (e: ChangeEvent<any>) => {
-        setTargetAmount(e.target.value);
+    const onTargetAmountChange = (e: ChangeEvent<HTMLInputElement>) => {
+        setTargetAmount(Number(e.target.value));
     };
-    const onImageUrlChange = (e: ChangeEvent<any>) => {
+    const onImageUrlChange = (e: ChangeEvent<HTMLInputElement>) => {
         setImageUrl(e.target.value);
     };
 
     const createCampaign = async () => {
-        const [campaign] = await PublicKey.findProgramAddress(
-            [
-                utils.bytes.utf8.encode('campaign_demo'),
-                wallet.publicKey!.toBuffer(),
-            ],
-            program.programId
-        );
-        await program.methods
-            .create(name, description, new BN(targetAmount), imageUrl)
-            .accounts({
-                campaign: campaign,
-                user: wallet.publicKey!,
-                systemProgram: web3.SystemProgram.programId,
-            })
-            .rpc();
+        try {
+            const [campaign] = await PublicKey.findProgramAddress(
+                [
+                    utils.bytes.utf8.encode('campaign_demo'),
+                    wallet.publicKey!.toBuffer(),
+                ],
+                program.programId
+            );
+            await program.methods
+                .create(name, description, new BN(targetAmount), imageUrl)
+                .accounts({
+                    campaign: campaign,
+                    user: wallet.publicKey!,
+                    systemProgram: web3.SystemProgram.programId,
+                })
+                .rpc();
+            // Clear form inputs after successful submission
+            setName('');
+            setDescription('');
+            setTargetAmount(1);
+            setImageUrl('');
+        } catch (error) {
+            console.error(error);
+            // Handle error message display to user
+        }
     };
 
     return (
