@@ -30,6 +30,7 @@ export const CampaignsView: React.FC<CampaignsViewProps> = ({ network }) => {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [targetAmount, setTargetAmount] = useState<number>(1);
+    const [imageUrl, setImageUrl] = useState('');
 
     const getProgram = () => {
         /* create the provider and return it to the caller */ 
@@ -51,7 +52,10 @@ export const CampaignsView: React.FC<CampaignsViewProps> = ({ network }) => {
     const onTargetAmountChange = (e: ChangeEvent<any>) => {
         setTargetAmount(e.target.value);
     };
-
+    const onImageUrlChange = (e: ChangeEvent<any>) => {
+        setImageUrl(e.target.value);
+    };
+    
     const createCampaign = async () => {
         const [campaign] = await PublicKey.findProgramAddress(
             [
@@ -61,7 +65,7 @@ export const CampaignsView: React.FC<CampaignsViewProps> = ({ network }) => {
             program.programId,
         );
         await program.methods
-            .create(name, description, new BN(targetAmount))
+            .create(name, description, new BN(targetAmount),imageUrl)
             .accounts({
                 campaign: campaign,
                 user: wallet.publicKey!,
