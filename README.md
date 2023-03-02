@@ -40,7 +40,7 @@ To view your campaigns:
 <a href="https://ibb.co/LtqzvCN"><img src="https://i.ibb.co/3N8yk0R/Screenshot-2.png" alt="Screenshot-2" border="0"></a>
 
 ## Authors
-
+- [@SiddheshZagade](https://github.com/SiddheshZagade)
 - [@patilkkrish](https://www.github.com/patilkkrish)
 
 ## License
