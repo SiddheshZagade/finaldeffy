@@ -56,84 +56,54 @@ export const CampaignsTable: React.FC<CampaignsTableProps> = ({
       const key = c.publicKey.toBase58();
 
       return (
-        <Card
-          key={key}
-          className="m-3"
-          style={{
-            width: '20rem',
-            backgroundImage: 'linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 100%)',
-            borderRadius: '1rem',
-            boxShadow: '0 0.5rem 1rem rgba(0, 0, 0, 0.15)',
-          }}
-        >
-          <Card.Img
-            variant="top"
-            src={c.account.imageUrl}
-            style={{ height: '12rem', objectFit: 'cover', borderRadius: '1rem 1rem 0 0' }}
-          />
+        <div className="sm:w-[288px]  w-full rounded-[15px] bg-[#1c1c24] cursor-pointer">
+          <img src={'https://cdn2.hubspot.net/hubfs/53/parts-url.jpg' } alt="fund" className="w-full h-[158px] object-cover rounded-[15px]"/>
+          
+          <div className="flex flex-col p-4">
+            <div className="flex flex-row items-center mb-[18px]">
+              <img src={'https://cdn2.hubspot.net/hubfs/53/parts-url.jpg'} alt="tag" className="w-[17px] h-[17px] object-contain"/>
+              <p className="ml-[12px] mt-[2px] font-epilogue font-medium text-[12px] text-[#808191]">Education</p>
+            </div>
 
-          <Card.Body
-            style={{
-              backgroundImage: 'linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 100%)',
-              borderRadius: '0 0 1rem 1rem',
-            }}
-          >
-            <Card.Title style={{ color: 'white', fontSize: '1.2rem' }}>
-              {c.account.name}
-            </Card.Title>
-            <Card.Text style={{ color: 'white', fontSize: '0.8rem' }}>
-              {c.account.description}
-            </Card.Text>
+            <div className="block">
+              <h3 className="font-epilogue font-semibold text-[16px] text-white text-left leading-[26px] truncate">{c.account.name}</h3>
+              <p className="mt-[5px] font-epilogue font-normal text-[#808191] text-left leading-[18px] truncate">{c.account.description}</p>
+            </div>
 
-            <div className="text-lg text-gray-400">
-              <p>
-                Target Amount:{' '}
-                {c.account.targetAmount.toString()}{' '}
-                <span className="text-white">
-                  ({(c.account.targetAmount / web3.LAMPORTS_PER_SOL).toString()} SOL)
-                </span>
+            <div className="flex justify-between flex-wrap mt-[15px] gap-2">
+              <div className="flex flex-col">
+                <h4 className="font-epilogue font-semibold text-[14px] text-[#b2b3bd] leading-[22px]">{(c.account.targetAmount / web3.LAMPORTS_PER_SOL).toString()} SOL</h4>
+                <p className="mt-[3px] font-epilogue font-normal text-[12px] leading-[18px] text-[#808191] sm:max-w-[120px] truncate">
+                Target Amount
               </p>
-              <p>
-                Donated:{' '}
-                {(c.account.amountDonated / web3.LAMPORTS_PER_SOL).toString()}{' '}
-                <span className="text-white">
-      ({(c.account.amountDonated / web3.LAMPORTS_PER_SOL).toString()} SOL)
-    </span>
-  </p>
-</div>
-            <div className="mt-4 d-grid gap-2">
-              <Button
-                variant="primary"
-                size="sm"
-                onClick={() => donate(c.publicKey)}
-              >
+              </div>
+              <div className="flex flex-col">
+                <h4 className="font-epilogue font-semibold text-[14px] text-[#b2b3bd] leading-[22px]">{(c.account.targetAmount ).toString()} SOL</h4>
+                <p className="mt-[3px] font-epilogue font-normal text-[12px] leading-[18px] text-[#808191] sm:max-w-[120px] truncate">
+                  Target Amount
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-[25px] flex justify-between">
+              <Button variant="primary" onClick={() => donate(c.publicKey)}>
                 Donate
               </Button>
-              <Button
-                variant="danger"
-                size="sm"
-                onClick={() => withdraw(c.publicKey)}
-                disabled={c.account.owner.toBase58() !== walletKey.toBase58()}
-                            >
-                                Withdraw
-                            </Button>
-                        </div>
-                    </Card.Body>
-
-                </Card>
-            );
-        });
-    };
-
-    return (
-        <div className="h-screen bg-gradient-to-br from-purple-800 to-purple-600">
-          <div className="container mx-auto py-8">
-            <div className="d-flex flex-wrap justify-content-center">
-              {allCampaigns()}
+              <Button variant="outline-primary" onClick={() => withdraw(c.publicKey)}>
+                Withdraw
+              </Button>
             </div>
           </div>
         </div>
       );
+    });
+  };
+
+  return (
+    <div className="flex flex-wrap justify-start gap-6">
+      {allCampaigns()}
+    </div>
+  );
 };
 
 export default CampaignsTable;
