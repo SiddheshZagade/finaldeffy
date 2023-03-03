@@ -1,3 +1,5 @@
+//copied from vite but can be made to work normal in solana
+
 import React, { useState, useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
 import { CountBox, CustomButton, Loader } from '../components';

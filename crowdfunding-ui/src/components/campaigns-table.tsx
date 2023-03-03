@@ -56,7 +56,10 @@ export const CampaignsTable: React.FC<CampaignsTableProps> = ({
       const key = c.publicKey.toBase58();
 
       return (
+        //gotta make this clickable and use campaingdetails to show more info and donate button
         <div className="sm:w-[288px]  w-full rounded-[15px] bg-[#1c1c24] cursor-pointer">
+           
+
           <img src={'https://cdn2.hubspot.net/hubfs/53/parts-url.jpg' } alt="fund" className="w-full h-[158px] object-cover rounded-[15px]"/>
           
           <div className="flex flex-col p-4">
