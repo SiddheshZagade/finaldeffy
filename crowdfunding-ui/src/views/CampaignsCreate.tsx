@@ -29,6 +29,7 @@ const CampaignsView: React.FC<CampaignsViewProps> = ({ network }) => {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [targetAmount, setTargetAmount] = useState<number>(1);
+    const [deadline, setDeadline] = useState('');
     const [imageUrl, setImageUrl] = useState('');
 
     const connection = new Connection(network, opts.preflightCommitment);
@@ -44,6 +45,9 @@ const CampaignsView: React.FC<CampaignsViewProps> = ({ network }) => {
     const onTargetAmountChange = (e: ChangeEvent<HTMLInputElement>) => {
         setTargetAmount(Number(e.target.value));
     };
+    const onDeadlineChange = (e: ChangeEvent<HTMLInputElement>) => {
+        setDeadline(e.target.value);
+    };
     const onImageUrlChange = (e: ChangeEvent<HTMLInputElement>) => {
         setImageUrl(e.target.value);
     };
@@ -58,7 +62,7 @@ const CampaignsView: React.FC<CampaignsViewProps> = ({ network }) => {
                 program.programId
             );
             await program.methods
-                .create(name, description, new BN(targetAmount), imageUrl)
+                .create(name, description, new BN(targetAmount), deadline, imageUrl)
                 .accounts({
                     campaign: campaign,
                     user: wallet.publicKey!,
@@ -69,6 +73,7 @@ const CampaignsView: React.FC<CampaignsViewProps> = ({ network }) => {
             setName('');
             setDescription('');
             setTargetAmount(1);
+            setDeadline('');
             setImageUrl('');
         } catch (error) {
             console.error(error);
@@ -127,6 +132,20 @@ const CampaignsView: React.FC<CampaignsViewProps> = ({ network }) => {
                                                 placeholder="Target amount that need to be reached"
                                                 value={targetAmount}
                                                 onChange={onTargetAmountChange}
+                                            />
+                                        </FloatingLabel>
+                                    </Form.Group>
+                                    <Form.Group className="mb-3">
+                                        <FloatingLabel
+                                            controlId="deadline"
+                                            label="Deadline"
+                                            className="mb-3"
+                                        >
+                                            <Form.Control
+                                                type="date"
+                                                placeholder="Deadline for the campaign"
+                                                value={deadline}
+                                                onChange={onDeadlineChange}
                                             />
                                         </FloatingLabel>
                                     </Form.Group>
