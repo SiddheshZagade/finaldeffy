@@ -1,30 +1,19 @@
 use anchor_lang::prelude::*;
-use std::convert::TryInto;
 
-declare_id!("6kdiEuXzdvAMThDg9rWtvYm3BBUH8PGTkJhyAKnLrv7G");
+declare_id!("4DZaVxizvqcN7cJiZpNyfUYKXvQDf1Wugc8b9WeDJt8q");
 
 #[program]
 pub mod crowdfunding_program {
     use super::*;
 
-    pub fn create(
-        ctx: Context<Create>,
-        name: String,
-        title: String,
-        description: String,
-        target: u64,
-        deadline: i64,
-        image: String,
-    ) -> Result<()> {
+    pub fn create(ctx: Context<Create>, name: String, description: String, target_amount: u64, image_url: String) -> Result<()> {
         let campaign = &mut ctx.accounts.campaign;
-        campaign.owner = *ctx.accounts.user.key;
         campaign.name = name;
-        campaign.title = title;
         campaign.description = description;
         campaign.amount_donated = 0;
-        campaign.target_amount = target;
-        campaign.deadline = deadline;
-        campaign.image_url = image;
+        campaign.target_amount = target_amount;
+        campaign.image_url = image_url;
+        campaign.owner = *ctx.accounts.user.key;
         Ok(())
     }
 
@@ -64,7 +53,7 @@ pub mod crowdfunding_program {
 
 #[derive(Accounts)]
 pub struct Create<'info> {
-    #[account(init, payer=user, space=1024 + 64 + 40 + 40 + 8 + 8 + 256)]
+    #[account(init, payer=user, space=9100, seeds=[b"campaign_demo".as_ref(), user.key().as_ref()], bump)]
     pub campaign: Account<'info, Campaign>,
     #[account(mut)]
     pub user: Signer<'info>,
@@ -92,11 +81,9 @@ pub struct Donate<'info> {
 pub struct Campaign {
     pub owner: Pubkey,
     pub name: String,
-    pub title: String,
     pub description: String,
     pub amount_donated: u64,
     pub target_amount: u64,
-    pub deadline: i64,
     pub image_url: String,
 }
 
