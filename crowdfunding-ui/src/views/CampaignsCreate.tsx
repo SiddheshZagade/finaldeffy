@@ -63,8 +63,9 @@ export const CampaignsView: React.FC<CampaignsViewProps> = ({ network }) => {
             ],
             program.programId,
         );
+        console.log('campaign:', campaign);
         await program.methods
-            .create(name, description, new BN(targetAmount),imageUrl)
+            .create(name, description, new BN(targetAmount), imageUrl)
             .accounts({
                 campaign: campaign,
                 user: wallet.publicKey!,
@@ -72,14 +73,7 @@ export const CampaignsView: React.FC<CampaignsViewProps> = ({ network }) => {
             })
             .rpc();
     };
-    const isValidUrl = (url: string) => {
-        try {
-            new URL(url);
-            return true;
-        } catch (_) {
-            return false;
-        }
-    };
+    
 
     return (
         <div className="bg-[#0a192f] min-h-screen flex flex-col justify-center items-center">
