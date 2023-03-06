@@ -8,7 +8,7 @@
         {
           "name": "campaign",
           "isMut": true,
-          "isSigner": false
+          "isSigner": true
         },
         {
           "name": "user",
@@ -27,12 +27,24 @@
           "type": "string"
         },
         {
+          "name": "title",
+          "type": "string"
+        },
+        {
           "name": "description",
           "type": "string"
         },
         {
-          "name": "targetAmount",
+          "name": "target",
           "type": "u64"
+        },
+        {
+          "name": "deadline",
+          "type": "i64"
+        },
+        {
+          "name": "image",
+          "type": "string"
         }
       ]
     },
@@ -99,6 +111,10 @@
             "type": "string"
           },
           {
+            "name": "title",
+            "type": "string"
+          },
+          {
             "name": "description",
             "type": "string"
           },
@@ -109,6 +125,14 @@
           {
             "name": "targetAmount",
             "type": "u64"
+          },
+          {
+            "name": "deadline",
+            "type": "i64"
+          },
+          {
+            "name": "imageUrl",
+            "type": "string"
           }
         ]
       }
@@ -127,6 +151,6 @@
     }
   ],
   "metadata": {
-    "address": "6kdiEuXzdvAMThDg9rWtvYm3BBUH8PGTkJhyAKnLrv7G"
+    "address": "4DZaVxizvqcN7cJiZpNyfUYKXvQDf1Wugc8b9WeDJt8q"
   }
 }

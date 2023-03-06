@@ -24,60 +24,61 @@ interface CampaignsViewProps {
     network: string;
 }
 
-const CampaignsView: React.FC<CampaignsViewProps> = ({ network }) => {
+export const CampaignsView: React.FC<CampaignsViewProps> = ({ network }) => {
     const wallet = useWallet();
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [targetAmount, setTargetAmount] = useState<number>(1);
-    const [deadline, setDeadline] = useState('');
-    const [imageUrl, setImageUrl] = useState('');
+    const [imageUrl, setImageUrl] = useState(''); // New state for image URL
 
-    const connection = new Connection(network, opts.preflightCommitment);
-    const provider = new AnchorProvider(connection, wallet as any, opts);
-    const program = new Program(idl as Idl, programId, provider);
+    const getProgram = () => {
+        /* create the provider and return it to the caller */
+        const connection = new Connection(network, opts.preflightCommitment);
+        const provider = new AnchorProvider(connection, wallet as any, opts);
+        /* create the program interface combining the idl, program ID, and provider */
+        const program = new Program(idl as Idl, programId, provider);
+        return program;
+    };
 
-    const onNameChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const program = getProgram();
+
+    const onNameChange = (e: ChangeEvent<any>) => {
         setName(e.target.value);
     };
-    const onDescriptionChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    const onDescriptionChange = (e: ChangeEvent<any>) => {
         setDescription(e.target.value);
     };
-    const onTargetAmountChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setTargetAmount(Number(e.target.value));
+    const onTargetAmountChange = (e: ChangeEvent<any>) => {
+        setTargetAmount(e.target.value);
     };
-    const onDeadlineChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setDeadline(e.target.value);
-    };
-    const onImageUrlChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const onImageUrlChange = (e: ChangeEvent<any>) => {
         setImageUrl(e.target.value);
     };
 
     const createCampaign = async () => {
+        const [campaign] = await PublicKey.findProgramAddress(
+            [
+                utils.bytes.utf8.encode('campaign_demo'),
+                wallet.publicKey!.toBuffer(),
+            ],
+            program.programId
+        );
+        await program.methods
+            .create(name, description, new BN(targetAmount))
+            .accounts({
+                campaign: campaign,
+                user: wallet.publicKey!,
+                systemProgram: web3.SystemProgram.programId,
+            })
+            .rpc();
+    };
+
+    const isValidUrl = (url: string) => {
         try {
-            const [campaign] = await PublicKey.findProgramAddress(
-                [
-                    utils.bytes.utf8.encode('campaign_demo'),
-                    wallet.publicKey!.toBuffer(),
-                ],
-                program.programId
-            );
-            await program.methods
-                .create(name, description, new BN(targetAmount), deadline, imageUrl)
-                .accounts({
-                    campaign: campaign,
-                    user: wallet.publicKey!,
-                    systemProgram: web3.SystemProgram.programId,
-                })
-                .rpc();
-            // Clear form inputs after successful submission
-            setName('');
-            setDescription('');
-            setTargetAmount(1);
-            setDeadline('');
-            setImageUrl('');
-        } catch (error) {
-            console.error(error);
-            // Handle error message display to user
+            new URL(url);
+            return true;
+        } catch (_) {
+            return false;
         }
     };
 
@@ -132,20 +133,6 @@ const CampaignsView: React.FC<CampaignsViewProps> = ({ network }) => {
                                                 placeholder="Target amount that need to be reached"
                                                 value={targetAmount}
                                                 onChange={onTargetAmountChange}
-                                            />
-                                        </FloatingLabel>
-                                    </Form.Group>
-                                    <Form.Group className="mb-3">
-                                        <FloatingLabel
-                                            controlId="deadline"
-                                            label="Deadline"
-                                            className="mb-3"
-                                        >
-                                            <Form.Control
-                                                type="date"
-                                                placeholder="Deadline for the campaign"
-                                                value={deadline}
-                                                onChange={onDeadlineChange}
                                             />
                                         </FloatingLabel>
                                     </Form.Group>
