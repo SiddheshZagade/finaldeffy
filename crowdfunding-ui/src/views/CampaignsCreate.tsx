@@ -61,10 +61,10 @@ export const CampaignsView: React.FC<CampaignsViewProps> = ({ network }) => {
                 utils.bytes.utf8.encode('campaign_demo'),
                 wallet.publicKey!.toBuffer(),
             ],
-            program.programId
+            program.programId,
         );
         await program.methods
-            .create(name, description, new BN(targetAmount))
+            .create(name, description, new BN(targetAmount),imageUrl)
             .accounts({
                 campaign: campaign,
                 user: wallet.publicKey!,
@@ -72,7 +72,6 @@ export const CampaignsView: React.FC<CampaignsViewProps> = ({ network }) => {
             })
             .rpc();
     };
-
     const isValidUrl = (url: string) => {
         try {
             new URL(url);
