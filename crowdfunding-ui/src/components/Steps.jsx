@@ -11,11 +11,11 @@ const Steps = () => {
                         </h2>
                     </div>
                     <dl className="mt-12 space-y-10 md:space-y-0 md:grid md:grid-cols-3 md:gap-8">
-                        <div class="text-center">
-                            <div class="flex flex-col items-center justify-center">
-                                <div class="flex items-center justify-center h-12 w-12 rounded-md bg-gradient-to-r from-purple-400 to-pink-600 text-white">
+                        <div className="text-center">
+                            <div className="flex flex-col items-center justify-center">
+                                <div className="flex items-center justify-center h-12 w-12 rounded-md bg-gradient-to-r from-purple-400 to-pink-600 text-white">
                                     <svg
-                                        class="h-6 w-6"
+                                        className="h-6 w-6"
                                         fill="none"
                                         viewBox="0 0 24 24"
                                         stroke="currentColor"
@@ -28,11 +28,11 @@ const Steps = () => {
                                         />
                                     </svg>
                                 </div>
-                                <div class="mt-5">
-                                    <dt class="text-lg leading-6 font-medium text-white">
+                                <div className="mt-5">
+                                    <dt className="text-lg leading-6 font-medium text-white">
                                         Step 1
                                     </dt>
-                                    <dd class="mt-2 text-base text-gray-500">
+                                    <dd className="mt-2 text-base text-gray-500">
                                         Receive funds directly to your Solana
                                         wallet.
                                     </dd>
@@ -40,11 +40,11 @@ const Steps = () => {
                             </div>
                         </div>
 
-                        <div class="text-center">
-                            <div class="flex flex-col items-center justify-center">
-                                <div class="flex items-center justify-center h-12 w-12 rounded-md bg-gradient-to-r from-purple-400 to-pink-600 text-white">
+                        <div className="text-center">
+                            <div className="flex flex-col items-center justify-center">
+                                <div className="flex items-center justify-center h-12 w-12 rounded-md bg-gradient-to-r from-purple-400 to-pink-600 text-white">
                                     <svg
-                                        class="h-6 w-6"
+                                        className="h-6 w-6"
                                         fill="none"
                                         viewBox="0 0 24 24"
                                         stroke="currentColor"
@@ -57,11 +57,11 @@ const Steps = () => {
                                         />
                                     </svg>
                                 </div>
-                                <div class="mt-5">
-                                    <dt class="text-lg leading-6 font-medium text-white">
+                                <div className="mt-5">
+                                    <dt className="text-lg leading-6 font-medium text-white">
                                         Step 2
                                     </dt>
-                                    <dd class="mt-2 text-base text-gray-500">
+                                    <dd className="mt-2 text-base text-gray-500">
                                         Receive funds directly to your Solana
                                         wallet.
                                     </dd>
@@ -69,7 +69,7 @@ const Steps = () => {
                             </div>
                         </div>
 
-                        <div class="text-center">
+                        <div className="text-center">
                             <div class="flex flex-col items-center justify-center">
                                 <div class="flex items-center justify-center h-12 w-12 rounded-md bg-gradient-to-r from-purple-400 to-pink-600 text-white">
                                     <svg

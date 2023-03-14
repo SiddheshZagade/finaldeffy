@@ -1,10 +1,10 @@
 [features]
 seeds = false
 [programs.localnet]
-crowdfunding_program = "9ztPHqzqffy3BaymaiYqNKntkYzns1o85ykqi8FMXgJx"
+crowdfunding_program = "HQZJSYJk2eGfXzHJ9W9KkXaiZYZjAh3hFrhrMgBDANDX"
 
 [programs.devnet]
-crowdfunding_program = "9ztPHqzqffy3BaymaiYqNKntkYzns1o85ykqi8FMXgJx"
+crowdfunding_program = "HQZJSYJk2eGfXzHJ9W9KkXaiZYZjAh3hFrhrMgBDANDX"
 
 [registry]
 url = "https://anchor.projectserum.com"
