@@ -24,7 +24,7 @@ describe('crowdfunding-program', async () => {
         /* Call the create function via RPC */
         
         await program.methods
-            .create('test campaign', 'test description', new anchor.BN(5))
+            .create('test campaign', 'test description', new anchor.BN(5), 'https://nationaltoday.com/wp-content/uploads/2022/05/7-Tree-Day.jpg')
             .accounts({
                 campaign: campaignAccount,
                 user: anchorProvider.wallet.publicKey,
@@ -33,13 +33,15 @@ describe('crowdfunding-program', async () => {
             .rpc();
 
         const campaignAcc = await program.account.campaign.fetch(
-            campaignAccount,
-        );
-        assert.equal(campaignAcc.name, 'test campaign');
-        assert.equal(campaignAcc.description, 'test description');
-        assert.ok(campaignAcc.targetAmount.eq(new anchor.BN(5)));
-        assert.ok(campaignAcc.owner.equals(anchorProvider.wallet.publicKey));
-        assert.ok(campaignAcc.amountDonated.eq(new anchor.BN(0)));
+    campaignAccount,
+);
+assert.equal(campaignAcc.name, 'test campaign');
+assert.equal(campaignAcc.description, 'test description');
+assert.equal(campaignAcc.imageUrl, 'https://nationaltoday.com/wp-content/uploads/2022/05/7-Tree-Day.jpg');
+assert.ok(campaignAcc.targetAmount.eq(new anchor.BN(5)));
+assert.ok(campaignAcc.owner.equals(anchorProvider.wallet.publicKey));
+assert.ok(campaignAcc.amountDonated.eq(new anchor.BN(0)));
+
     });
 
     it('Should donate to campaign', async () => {
@@ -74,4 +76,3 @@ describe('crowdfunding-program', async () => {
         assert.ok(campaignAcc.amountDonated.eq(new anchor.BN(0.33 * anchor.web3.LAMPORTS_PER_SOL)));
     });
 });
-

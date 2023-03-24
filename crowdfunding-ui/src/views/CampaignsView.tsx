@@ -9,7 +9,8 @@ import {
 } from '@project-serum/anchor';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { Commitment, Connection, PublicKey } from '@solana/web3.js';
-import idl from '../idl.json';
+import idl from '../idl.json' 
+
 import { Button, FloatingLabel, Form } from 'react-bootstrap';
 import CampaignsTable from '../components/campaigns-table';
 import { Card, CardImg, CardText, CardBody,
