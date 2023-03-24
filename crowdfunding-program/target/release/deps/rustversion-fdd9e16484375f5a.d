@@ -1,0 +1,20 @@
+/mnt/c/Users/sidde/Desktop/finaldeffy-main/crowdfunding-program/target/release/deps/librustversion-fdd9e16484375f5a.so: /root/.cargo/registry/src/github.com-1ecc6299db9ec823/rustversion-1.0.7/src/lib.rs /root/.cargo/registry/src/github.com-1ecc6299db9ec823/rustversion-1.0.7/src/attr.rs /root/.cargo/registry/src/github.com-1ecc6299db9ec823/rustversion-1.0.7/src/bound.rs /root/.cargo/registry/src/github.com-1ecc6299db9ec823/rustversion-1.0.7/src/constfn.rs /root/.cargo/registry/src/github.com-1ecc6299db9ec823/rustversion-1.0.7/src/date.rs /root/.cargo/registry/src/github.com-1ecc6299db9ec823/rustversion-1.0.7/src/error.rs /root/.cargo/registry/src/github.com-1ecc6299db9ec823/rustversion-1.0.7/src/expand.rs /root/.cargo/registry/src/github.com-1ecc6299db9ec823/rustversion-1.0.7/src/expr.rs /root/.cargo/registry/src/github.com-1ecc6299db9ec823/rustversion-1.0.7/src/iter.rs /root/.cargo/registry/src/github.com-1ecc6299db9ec823/rustversion-1.0.7/src/release.rs /root/.cargo/registry/src/github.com-1ecc6299db9ec823/rustversion-1.0.7/src/time.rs /root/.cargo/registry/src/github.com-1ecc6299db9ec823/rustversion-1.0.7/src/token.rs /root/.cargo/registry/src/github.com-1ecc6299db9ec823/rustversion-1.0.7/src/version.rs /mnt/c/Users/sidde/Desktop/finaldeffy-main/crowdfunding-program/target/release/build/rustversion-95dfaa43742cbae2/out/version.expr
+
+/mnt/c/Users/sidde/Desktop/finaldeffy-main/crowdfunding-program/target/release/deps/rustversion-fdd9e16484375f5a.d: /root/.cargo/registry/src/github.com-1ecc6299db9ec823/rustversion-1.0.7/src/lib.rs /root/.cargo/registry/src/github.com-1ecc6299db9ec823/rustversion-1.0.7/src/attr.rs /root/.cargo/registry/src/github.com-1ecc6299db9ec823/rustversion-1.0.7/src/bound.rs /root/.cargo/registry/src/github.com-1ecc6299db9ec823/rustversion-1.0.7/src/constfn.rs /root/.cargo/registry/src/github.com-1ecc6299db9ec823/rustversion-1.0.7/src/date.rs /root/.cargo/registry/src/github.com-1ecc6299db9ec823/rustversion-1.0.7/src/error.rs /root/.cargo/registry/src/github.com-1ecc6299db9ec823/rustversion-1.0.7/src/expand.rs /root/.cargo/registry/src/github.com-1ecc6299db9ec823/rustversion-1.0.7/src/expr.rs /root/.cargo/registry/src/github.com-1ecc6299db9ec823/rustversion-1.0.7/src/iter.rs /root/.cargo/registry/src/github.com-1ecc6299db9ec823/rustversion-1.0.7/src/release.rs /root/.cargo/registry/src/github.com-1ecc6299db9ec823/rustversion-1.0.7/src/time.rs /root/.cargo/registry/src/github.com-1ecc6299db9ec823/rustversion-1.0.7/src/token.rs /root/.cargo/registry/src/github.com-1ecc6299db9ec823/rustversion-1.0.7/src/version.rs /mnt/c/Users/sidde/Desktop/finaldeffy-main/crowdfunding-program/target/release/build/rustversion-95dfaa43742cbae2/out/version.expr
+
+/root/.cargo/registry/src/github.com-1ecc6299db9ec823/rustversion-1.0.7/src/lib.rs:
+/root/.cargo/registry/src/github.com-1ecc6299db9ec823/rustversion-1.0.7/src/attr.rs:
+/root/.cargo/registry/src/github.com-1ecc6299db9ec823/rustversion-1.0.7/src/bound.rs:
+/root/.cargo/registry/src/github.com-1ecc6299db9ec823/rustversion-1.0.7/src/constfn.rs:
+/root/.cargo/registry/src/github.com-1ecc6299db9ec823/rustversion-1.0.7/src/date.rs:
+/root/.cargo/registry/src/github.com-1ecc6299db9ec823/rustversion-1.0.7/src/error.rs:
+/root/.cargo/registry/src/github.com-1ecc6299db9ec823/rustversion-1.0.7/src/expand.rs:
+/root/.cargo/registry/src/github.com-1ecc6299db9ec823/rustversion-1.0.7/src/expr.rs:
+/root/.cargo/registry/src/github.com-1ecc6299db9ec823/rustversion-1.0.7/src/iter.rs:
+/root/.cargo/registry/src/github.com-1ecc6299db9ec823/rustversion-1.0.7/src/release.rs:
+/root/.cargo/registry/src/github.com-1ecc6299db9ec823/rustversion-1.0.7/src/time.rs:
+/root/.cargo/registry/src/github.com-1ecc6299db9ec823/rustversion-1.0.7/src/token.rs:
+/root/.cargo/registry/src/github.com-1ecc6299db9ec823/rustversion-1.0.7/src/version.rs:
+/mnt/c/Users/sidde/Desktop/finaldeffy-main/crowdfunding-program/target/release/build/rustversion-95dfaa43742cbae2/out/version.expr:
+
+# env-dep:OUT_DIR=/mnt/c/Users/sidde/Desktop/finaldeffy-main/crowdfunding-program/target/release/build/rustversion-95dfaa43742cbae2/out
