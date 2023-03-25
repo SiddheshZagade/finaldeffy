@@ -31,9 +31,10 @@ export const CampaignsView: React.FC<CampaignsViewProps> = ({ network }) => {
     const [targetAmount, setTargetAmount] = useState<number>(1);
     const [imageUrl, setImageUrl] = useState(''); // New state for image URL
 
+    const connection = new Connection(network, opts.preflightCommitment); // Create a new connection object
+
     const getProgram = () => {
         /* create the provider and return it to the caller */
-        const connection = new Connection(network, opts.preflightCommitment);
         const provider = new AnchorProvider(connection, wallet as any, opts);
         /* create the program interface combining the idl, program ID, and provider */
         const program = new Program(idl as Idl, programId, provider);
@@ -56,6 +57,8 @@ export const CampaignsView: React.FC<CampaignsViewProps> = ({ network }) => {
     };
 
     const createCampaign = async () => {
+
+        
         const [campaign] = await PublicKey.findProgramAddress(
             [
                 utils.bytes.utf8.encode('campaign_demo'),
@@ -63,7 +66,7 @@ export const CampaignsView: React.FC<CampaignsViewProps> = ({ network }) => {
             ],
             program.programId,
         );
-        console.log('campaign:', campaign);
+        console.log('campaign:', campaign.toBase58());
         await program.methods
             .create(name, description, new BN(targetAmount), imageUrl)
             .accounts({
@@ -73,6 +76,10 @@ export const CampaignsView: React.FC<CampaignsViewProps> = ({ network }) => {
             })
             .rpc();
     };
+   
+   
+      
+
     
 
     return (
@@ -152,11 +159,13 @@ export const CampaignsView: React.FC<CampaignsViewProps> = ({ network }) => {
                                         </Button>
                                     </Form.Group>
                                 </Form>
+                                
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            
         </div>
     );
 };

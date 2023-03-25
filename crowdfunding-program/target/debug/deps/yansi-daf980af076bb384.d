@@ -1,0 +1,12 @@
+c:\Users\sidde\Desktop\finaldeffy-main\crowdfunding-program\target\debug\deps\yansi-daf980af076bb384.rmeta: C:\Users\sidde\.cargo\registry\src\github.com-1ecc6299db9ec823\yansi-0.5.1\src\lib.rs C:\Users\sidde\.cargo\registry\src\github.com-1ecc6299db9ec823\yansi-0.5.1\src\macros.rs C:\Users\sidde\.cargo\registry\src\github.com-1ecc6299db9ec823\yansi-0.5.1\src\windows.rs C:\Users\sidde\.cargo\registry\src\github.com-1ecc6299db9ec823\yansi-0.5.1\src\paint.rs C:\Users\sidde\.cargo\registry\src\github.com-1ecc6299db9ec823\yansi-0.5.1\src\style.rs C:\Users\sidde\.cargo\registry\src\github.com-1ecc6299db9ec823\yansi-0.5.1\src\color.rs
+
+c:\Users\sidde\Desktop\finaldeffy-main\crowdfunding-program\target\debug\deps\libyansi-daf980af076bb384.rlib: C:\Users\sidde\.cargo\registry\src\github.com-1ecc6299db9ec823\yansi-0.5.1\src\lib.rs C:\Users\sidde\.cargo\registry\src\github.com-1ecc6299db9ec823\yansi-0.5.1\src\macros.rs C:\Users\sidde\.cargo\registry\src\github.com-1ecc6299db9ec823\yansi-0.5.1\src\windows.rs C:\Users\sidde\.cargo\registry\src\github.com-1ecc6299db9ec823\yansi-0.5.1\src\paint.rs C:\Users\sidde\.cargo\registry\src\github.com-1ecc6299db9ec823\yansi-0.5.1\src\style.rs C:\Users\sidde\.cargo\registry\src\github.com-1ecc6299db9ec823\yansi-0.5.1\src\color.rs
+
+c:\Users\sidde\Desktop\finaldeffy-main\crowdfunding-program\target\debug\deps\yansi-daf980af076bb384.d: C:\Users\sidde\.cargo\registry\src\github.com-1ecc6299db9ec823\yansi-0.5.1\src\lib.rs C:\Users\sidde\.cargo\registry\src\github.com-1ecc6299db9ec823\yansi-0.5.1\src\macros.rs C:\Users\sidde\.cargo\registry\src\github.com-1ecc6299db9ec823\yansi-0.5.1\src\windows.rs C:\Users\sidde\.cargo\registry\src\github.com-1ecc6299db9ec823\yansi-0.5.1\src\paint.rs C:\Users\sidde\.cargo\registry\src\github.com-1ecc6299db9ec823\yansi-0.5.1\src\style.rs C:\Users\sidde\.cargo\registry\src\github.com-1ecc6299db9ec823\yansi-0.5.1\src\color.rs
+
+C:\Users\sidde\.cargo\registry\src\github.com-1ecc6299db9ec823\yansi-0.5.1\src\lib.rs:
+C:\Users\sidde\.cargo\registry\src\github.com-1ecc6299db9ec823\yansi-0.5.1\src\macros.rs:
+C:\Users\sidde\.cargo\registry\src\github.com-1ecc6299db9ec823\yansi-0.5.1\src\windows.rs:
+C:\Users\sidde\.cargo\registry\src\github.com-1ecc6299db9ec823\yansi-0.5.1\src\paint.rs:
+C:\Users\sidde\.cargo\registry\src\github.com-1ecc6299db9ec823\yansi-0.5.1\src\style.rs:
+C:\Users\sidde\.cargo\registry\src\github.com-1ecc6299db9ec823\yansi-0.5.1\src\color.rs:
