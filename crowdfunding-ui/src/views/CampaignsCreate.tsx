@@ -67,6 +67,7 @@ export const CampaignsView: React.FC<CampaignsViewProps> = ({ network }) => {
             program.programId,
         );
         console.log('campaign:', campaign.toBase58());
+       
         await program.methods
             .create(name, description, new BN(targetAmount), imageUrl)
             .accounts({
@@ -75,6 +76,7 @@ export const CampaignsView: React.FC<CampaignsViewProps> = ({ network }) => {
                 systemProgram: web3.SystemProgram.programId,
             })
             .rpc();
+            console.log('imageUrl:', imageUrl);
     };
    
    

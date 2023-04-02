@@ -56,15 +56,14 @@ export const CampaignsTable: React.FC<CampaignsTableProps> = ({
       const key = c.publicKey.toBase58();
 
       return (
-        //gotta make this clickable and use campaingdetails to show more info and donate button
         <div className="sm:w-[288px]  w-full rounded-[15px] bg-[#1c1c24] cursor-pointer">
-           
-
-          <img src={'c.account.image_url' } alt="fund" className="w-full h-[158px] object-cover rounded-[15px]"/>
+          <img src={c.account.imageUrl} alt="fund" className="w-full h-[158px] object-cover rounded-[15px]"/>
+          
           
           <div className="flex flex-col p-4">
             <div className="flex flex-row items-center mb-[18px]">
-              <img src={'c.account.image_urlg'} alt="tag" className="w-[17px] h-[17px] object-contain"/>
+            
+
               <p className="ml-[12px] mt-[2px] font-epilogue font-medium text-[12px] text-[#808191]">Education</p>
             </div>
 
