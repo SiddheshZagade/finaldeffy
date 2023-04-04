@@ -68,13 +68,11 @@ export const CampaignsTable: React.FC<CampaignsTableProps> = ({
 
             const donatedAmount =
                 c.account.amountDonated / web3.LAMPORTS_PER_SOL;
-            const targetAmount =
-                c.account.targetAmount.toNumber() / web3.LAMPORTS_PER_SOL;
+            const targetAmount = parseFloat(c.account.targetAmount.toString());
             const progress = calculateBarPercentage(
                 targetAmount,
                 donatedAmount
             );
-
             return (
                 <div
                     key={i}
@@ -112,7 +110,9 @@ export const CampaignsTable: React.FC<CampaignsTableProps> = ({
                                 }}
                             />
                         </div>
-
+                        <p className="mt-2 text-center font-medium text-gray-500">{progress}%</p>
+                       
+                       
                         <div className="flex justify-between flex-wrap mt-[15px] gap-2">
                             <div className="flex flex-col">
                                 <h4 className="font-epilogue font-semibold text-[14px] text-[#b2b3bd] leading-[22px]">
