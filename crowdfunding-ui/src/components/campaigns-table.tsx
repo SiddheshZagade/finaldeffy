@@ -5,6 +5,8 @@ import { PublicKey } from '@solana/web3.js';
 import { Button, Card, Form } from 'react-bootstrap';
 import Modal from './Modal';
 
+
+
 interface CampaignsTableProps {
     program: Program;
     walletKey: PublicKey;
@@ -17,6 +19,7 @@ export const CampaignsTable: React.FC<CampaignsTableProps> = ({
     const [campaigns, setCampaigns] = useState<ProgramAccount[]>([]);
     const [showModal, setShowModal] = useState(false);
     const [donationAmount, setDonationAmount] = useState(0);
+    
     const [selectedCampaign, setSelectedCampaign] =
         useState<ProgramAccount | null>(null);
 
@@ -30,6 +33,7 @@ export const CampaignsTable: React.FC<CampaignsTableProps> = ({
     }, [program, walletKey]);
 
     const donate = async (campaignKey: PublicKey, amount: number) => {
+        
         try {
           const lamports = Math.floor(amount * web3.LAMPORTS_PER_SOL);
           await program.rpc.donate(new BN(lamports), {
@@ -56,16 +60,19 @@ export const CampaignsTable: React.FC<CampaignsTableProps> = ({
                     campaign: campaignKey,
                     user: walletKey,
                 },
+                
             });
+            
+            
         } catch (err) {
             console.error('Withdraw transaction error: ', err);
         }
     };
-
+    
     const allCampaigns = () => {
         return campaigns.map((c, i) => {
             const key = c.publicKey.toBase58();
-
+            
             const donatedAmount =
                 c.account.amountDonated / web3.LAMPORTS_PER_SOL;
             const targetAmount = parseFloat(c.account.targetAmount.toString());
@@ -73,7 +80,9 @@ export const CampaignsTable: React.FC<CampaignsTableProps> = ({
                 targetAmount,
                 donatedAmount
             );
+            
             return (
+                
                 <div
                     key={i}
                     className="sm:w-[288px] w-full rounded-[15px] bg-[#1c1c24] cursor-pointer"
@@ -159,15 +168,13 @@ export const CampaignsTable: React.FC<CampaignsTableProps> = ({
                 >
                     Donate
                 </Button>
-                            <Button
-                                variant="outline-primary"
-                                onClick={(e) => {
-                                    e.stopPropagation();
-                                    withdraw(c.publicKey);
-                                  }}
-                            >
-                                Withdraw
-                            </Button>
+                
+                {"CPD5JjAyHLFC8HdSTGwzfg6ocknzwDCiH7sLnhTQDzfh" === walletKey.toBase58() && (
+                    <Button variant="outline-primary" onClick={() => withdraw(c.publicKey)}>
+                        
+                        Withdraw
+                        </Button>
+                            )}
                         </div>
                     </div>
                 </div>
