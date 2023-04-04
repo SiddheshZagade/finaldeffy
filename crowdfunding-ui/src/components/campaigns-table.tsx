@@ -84,13 +84,11 @@ export const CampaignsTable: React.FC<CampaignsTableProps> = ({
                         className="w-full h-[158px] object-cover rounded-tl-2xl rounded-tr-2xl"
                     />
 
-                    <div className="flex flex-col p-4">
-                        <div className="flex flex-row items-center mb-[18px]">
-                            <p className="ml-[12px] mt-[2px] font-epilogue font-medium text-[12px] text-[#808191]"></p>
-                        </div>
+                    <div className="flex flex-col p-2">
+                        
 
                         <div className="block">
-                            <h3 className="font-epilogue font-semibold text-[16px] text-white text-left leading-[26px] truncate">
+                            <h3 className="font-epilogue font-semibold text-[16px] text-white text-left leading-[26px] truncate mt-[10px]">
                                 {c.account.name}
                             </h3>
                             <p className="mt-[5px] font-epilogue font-normal text-[#808191] text-left leading-[18px] truncate">
