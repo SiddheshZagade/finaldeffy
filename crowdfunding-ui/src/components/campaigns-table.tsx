@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState ,ChangeEvent} from 'react';
 import { calculateBarPercentage } from '../utils';
 import { BN, Program, ProgramAccount, web3 } from '@project-serum/anchor';
 import { PublicKey } from '@solana/web3.js';
@@ -16,6 +16,7 @@ export const CampaignsTable: React.FC<CampaignsTableProps> = ({
 }) => {
     const [campaigns, setCampaigns] = useState<ProgramAccount[]>([]);
     const [showModal, setShowModal] = useState(false);
+    const [donationAmount, setDonationAmount] = useState(0);
     const [selectedCampaign, setSelectedCampaign] =
         useState<ProgramAccount | null>(null);
 
@@ -28,20 +29,25 @@ export const CampaignsTable: React.FC<CampaignsTableProps> = ({
         getAllCampaigns();
     }, [program, walletKey]);
 
-    const donate = async (campaignKey: PublicKey) => {
+    const donate = async (campaignKey: PublicKey, amount: number) => {
         try {
-            await program.rpc.donate(new BN(0.2 * web3.LAMPORTS_PER_SOL), {
-                accounts: {
-                    campaign: campaignKey,
-                    user: walletKey,
-                    systemProgram: web3.SystemProgram.programId,
-                },
-            });
-            await getAllCampaigns();
+          const lamports = Math.floor(amount * web3.LAMPORTS_PER_SOL);
+          await program.rpc.donate(new BN(lamports), {
+            accounts: {
+              campaign: campaignKey,
+              user: walletKey,
+              systemProgram: web3.SystemProgram.programId,
+            },
+          });
+          await getAllCampaigns();
         } catch (err) {
-            console.error('Donate transaction error: ', err);
+          console.error('Donate transaction error: ', err);
         }
+      };
+      const handleDonationAmountChange = (e: ChangeEvent<any>) => {
+        setDonationAmount(Number(e.target.value));
     };
+    
 
     const withdraw = async (campaignKey: PublicKey) => {
         try {
@@ -130,13 +136,26 @@ export const CampaignsTable: React.FC<CampaignsTableProps> = ({
                             </div>
                         </div>
 
-                        <div className="mt-[10px] flex justify-between">
-                            <Button
-                                variant="primary"
-                                onClick={() => donate(c.publicKey)}
-                            >
-                                Donate
-                            </Button>
+                        <div className="mt-6 mb-2 flex items-center justify-center">
+                <input
+                    type="number"
+                    min="0"
+                    step="0.01"
+                    className="py-2 px-3 border border-gray-400 rounded-md w-32"
+                    value={donationAmount}
+                    onChange={handleDonationAmountChange}
+                    onClick={(e) => e.stopPropagation()}
+                />
+                <Button
+                    variant="primary"
+                    
+                    onClick={() => donate(c.publicKey, donationAmount)}
+                    
+                    
+                    
+                >
+                    Donate
+                </Button>
                             <Button
                                 variant="outline-primary"
                                 onClick={() => withdraw(c.publicKey)}

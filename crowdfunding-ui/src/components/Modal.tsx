@@ -3,6 +3,7 @@ import { ProgramAccount } from '@project-serum/anchor';
 import { Modal as BootstrapModal, Button } from 'react-bootstrap';
 import { calculateBarPercentage } from '../utils';
 import { web3 } from '@project-serum/anchor';
+const BN = require('bn.js');
 
 interface ModalProps {
     campaign: ProgramAccount;
@@ -51,7 +52,7 @@ const Modal: React.FC<ModalProps> = ({ campaign, show, handleClose }) => {
                     </div>
                     <div className="flex flex-col">
                         <h4 className="font-epilogue font-semibold text-[14px] text-[#b2b3bd] leading-[22px]">
-                            {targetAmount.toString()} SOL
+                            {campaign.account.targetAmount.toString()} SOL
                         </h4>
                         <p className="mt-[3px] font-epilogue font-normal text-[12px] leading-[18px] text-[#808191] sm:max-w-[120px] truncate">
                             Target Amount
