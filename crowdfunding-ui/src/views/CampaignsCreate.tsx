@@ -29,14 +29,13 @@ export const CampaignsView: React.FC<CampaignsViewProps> = ({ network }) => {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [targetAmount, setTargetAmount] = useState<number>(1);
-    const [imageUrl, setImageUrl] = useState(''); // New state for image URL
+    const [imageUrl, setImageUrl] = useState('');
+    const [successMessage, setSuccessMessage] = useState('');
 
-    const connection = new Connection(network, opts.preflightCommitment); // Create a new connection object
+    const connection = new Connection(network, opts.preflightCommitment);
 
     const getProgram = () => {
-        /* create the provider and return it to the caller */
         const provider = new AnchorProvider(connection, wallet as any, opts);
-        /* create the program interface combining the idl, program ID, and provider */
         const program = new Program(idl as Idl, programId, provider);
         return program;
     };
@@ -57,32 +56,31 @@ export const CampaignsView: React.FC<CampaignsViewProps> = ({ network }) => {
     };
 
     const createCampaign = async () => {
+        try {
+            const [campaign] = await PublicKey.findProgramAddress(
+                [
+                    utils.bytes.utf8.encode('campaign_demo'),
+                    wallet.publicKey!.toBuffer(),
+                ],
+                program.programId
+            );
+            console.log('campaign:', campaign.toBase58());
 
-        
-        const [campaign] = await PublicKey.findProgramAddress(
-            [
-                utils.bytes.utf8.encode('campaign_demo'),
-                wallet.publicKey!.toBuffer(),
-            ],
-            program.programId,
-        );
-        console.log('campaign:', campaign.toBase58());
-       
-        await program.methods
-            .create(name, description, new BN(targetAmount), imageUrl)
-            .accounts({
-                campaign: campaign,
-                user: wallet.publicKey!,
-                systemProgram: web3.SystemProgram.programId,
-            })
-            .rpc();
+            await program.methods
+                .create(name, description, new BN(targetAmount), imageUrl)
+                .accounts({
+                    campaign: campaign,
+                    user: wallet.publicKey!,
+                    systemProgram: web3.SystemProgram.programId,
+                })
+                .rpc();
             console.log('imageUrl:', imageUrl);
+            setSuccessMessage(`Campaign created successfully!`);
+        } catch (error) {
+            console.error(error);
+            setSuccessMessage('Error creating campaign. Please try again.');
+        }
     };
-   
-   
-      
-
-    
 
     return (
         <div className="bg-[#0a192f] min-h-screen flex flex-col justify-center items-center">
@@ -161,13 +159,14 @@ export const CampaignsView: React.FC<CampaignsViewProps> = ({ network }) => {
                                         </Button>
                                     </Form.Group>
                                 </Form>
-                                
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            
+            {successMessage && (
+                <div className="text-green-600 font-bold">{successMessage}</div>
+            )}
         </div>
     );
 };

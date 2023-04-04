@@ -3,6 +3,7 @@ import { calculateBarPercentage } from '../utils';
 import { BN, Program, ProgramAccount, web3 } from '@project-serum/anchor';
 import { PublicKey } from '@solana/web3.js';
 import { Button, Card, Form } from 'react-bootstrap';
+import Modal from './Modal';
 
 interface CampaignsTableProps {
     program: Program;
@@ -14,6 +15,9 @@ export const CampaignsTable: React.FC<CampaignsTableProps> = ({
     walletKey,
 }) => {
     const [campaigns, setCampaigns] = useState<ProgramAccount[]>([]);
+    const [showModal, setShowModal] = useState(false);
+    const [selectedCampaign, setSelectedCampaign] =
+        useState<ProgramAccount | null>(null);
 
     const getAllCampaigns = async () => {
         const campaigns = await program.account.campaign.all();
@@ -66,7 +70,14 @@ export const CampaignsTable: React.FC<CampaignsTableProps> = ({
             );
 
             return (
-                <div className="sm:w-[288px] w-full rounded-[15px] bg-[#1c1c24] cursor-pointer">
+                <div
+                    key={i}
+                    className="sm:w-[288px] w-full rounded-[15px] bg-[#1c1c24] cursor-pointer"
+                    onClick={() => {
+                        setSelectedCampaign(c);
+                        setShowModal(true);
+                    }}
+                >
                     <img
                         src={c.account.imageUrl}
                         alt="fund"
@@ -144,6 +155,13 @@ export const CampaignsTable: React.FC<CampaignsTableProps> = ({
     return (
         <div className="flex flex-wrap justify-start gap-6">
             {allCampaigns()}
+            {selectedCampaign && (
+                <Modal
+                    campaign={selectedCampaign}
+                    show={showModal}
+                    handleClose={() => setShowModal(false)}
+                />
+            )}
         </div>
     );
 };
