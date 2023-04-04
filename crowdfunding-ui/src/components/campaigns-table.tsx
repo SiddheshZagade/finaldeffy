@@ -149,7 +149,10 @@ export const CampaignsTable: React.FC<CampaignsTableProps> = ({
                 <Button
                     variant="primary"
                     
-                    onClick={() => donate(c.publicKey, donationAmount)}
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        donate(c.publicKey, donationAmount);
+                      }}
                     
                     
                     
@@ -158,7 +161,10 @@ export const CampaignsTable: React.FC<CampaignsTableProps> = ({
                 </Button>
                             <Button
                                 variant="outline-primary"
-                                onClick={() => withdraw(c.publicKey)}
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    withdraw(c.publicKey);
+                                  }}
                             >
                                 Withdraw
                             </Button>
