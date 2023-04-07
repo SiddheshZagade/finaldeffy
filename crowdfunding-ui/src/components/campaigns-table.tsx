@@ -169,13 +169,10 @@ export const CampaignsTable: React.FC<CampaignsTableProps> = ({
                     Donate
                 </Button>
                 
-                {"CPD5JjAyHLFC8HdSTGwzrandomrusth" 
-                
-                
-                !== walletKey.toBase58() && (
+                {c.account.owner.toBase58() === walletKey.toBase58() && (
                     <Button variant="outline-primary" onClick={() => withdraw(c.publicKey)}>
                         
-                        Withdraw
+                        Withdraw 
                         </Button>
                             )}
                         </div>

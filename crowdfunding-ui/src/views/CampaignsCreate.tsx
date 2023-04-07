@@ -13,6 +13,7 @@ import idl from '../idl.json';
 import { Button, FloatingLabel, Form } from 'react-bootstrap';
 import CampaignsTable from '../components/campaigns-table';
 import { Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap';
+import confetti from 'canvas-confetti';
 
 const opts: { preflightCommitment: Commitment } = {
     preflightCommitment: 'processed',
@@ -76,11 +77,29 @@ export const CampaignsView: React.FC<CampaignsViewProps> = ({ network }) => {
                 .rpc();
             console.log('imageUrl:', imageUrl);
             setSuccessMessage(`Campaign created successfully!`);
+
+            // Add confetti celebration
+            const canvas = document.getElementById('canvas') as HTMLCanvasElement;
+            if (canvas) {
+                const myConfetti = confetti.create(canvas, {
+                    resize: true,
+                    useWorker: true,
+                });
+                myConfetti({
+                    particleCount: 100,
+                    spread: 160,
+                    startVelocity: 50,
+                    origin: {
+                        y: 0.6,
+                    },
+                });
+            }
         } catch (error) {
             console.error(error);
             setSuccessMessage('Error creating campaign. Please try again.');
         }
     };
+
 
     return (
         <div className="bg-[#0a192f] min-h-screen flex flex-col justify-center items-center">
@@ -166,6 +185,19 @@ export const CampaignsView: React.FC<CampaignsViewProps> = ({ network }) => {
             </div>
             {successMessage && (
                 <div className="text-green-600 font-bold">{successMessage}</div>
+            )}
+            {successMessage && (
+                <div
+                    id="canvas-container"
+                    style={{
+                        width: '100%',
+                        height: '100%',
+                        position: 'fixed',
+                        top: 0,
+                        left: 0,
+                        zIndex: 999999,
+                    }}
+                />
             )}
         </div>
     );
