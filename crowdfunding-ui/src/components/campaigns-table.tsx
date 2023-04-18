@@ -17,7 +17,7 @@ export const CampaignsTable: React.FC<CampaignsTableProps> = ({
     const [campaigns, setCampaigns] = useState<ProgramAccount[]>([]);
     const [showModal, setShowModal] = useState(false);
     const [donationAmount, setDonationAmount] = useState(0);
-
+    const [withAmount, setwithAmount] = useState(0);
     const [selectedCampaign, setSelectedCampaign] =
         useState<ProgramAccount | null>(null);
 
@@ -48,10 +48,13 @@ export const CampaignsTable: React.FC<CampaignsTableProps> = ({
     const handleDonationAmountChange = (e: ChangeEvent<any>) => {
         setDonationAmount(Number(e.target.value));
     };
-
-    const withdraw = async (campaignKey: PublicKey) => {
+    const handlewithAmountChange = (e: ChangeEvent<any>) => {
+        setwithAmount(Number(e.target.value));
+    };
+    const withdraw = async (campaignKey: PublicKey, amount: number) => {
         try {
-            await program.rpc.withdraw(new BN(0.2 * web3.LAMPORTS_PER_SOL), {
+            const lamports = Math.floor(amount * web3.LAMPORTS_PER_SOL);
+            await program.rpc.withdraw(new BN(lamports), {
                 accounts: {
                     campaign: campaignKey,
                     user: walletKey,
@@ -162,17 +165,39 @@ export const CampaignsTable: React.FC<CampaignsTableProps> = ({
                             >
                                 Donate
                             </button>
-
                             {c.account.owner.toBase58() ===
                                 walletKey.toBase58() && (
-                                <Button
-                                    variant="outline-primary"
-                                    onClick={() => withdraw(c.publicKey)}
-                                >
-                                    Withdraw
-                                </Button>
-                            )}
+                            <div className="mt-6 mb-2 flex items-center justify-center">
+                            <div className="relative">
+                                <input
+                                    type="number"
+                                    min="0"
+                                    step="0.1"
+                                    className="py-2 px-3 border border-gray-400 rounded-md w-32 bg-gray-100 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                    value={withAmount}
+                                    onChange={handlewithAmountChange}
+                                    onClick={(e) => e.stopPropagation()}
+                                    placeholder="Enter Amount"
+                                />
+                                <div className="absolute inset-y-0 right-0 flex items-center pr-3">
+                                    <span className="text-gray-500">SOL</span>
+                                </div>
+                            </div>
+
+                            <button
+                                className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 ml-4 rounded-md transition-colors duration-300"
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    withdraw(c.publicKey, withAmount);
+                                }}
+                            >
+                                Withdraw
+                            </button>
+                            </div>
+                                )}
+                            
                         </div>
+                       
                     </div>
                 </div>
             );
