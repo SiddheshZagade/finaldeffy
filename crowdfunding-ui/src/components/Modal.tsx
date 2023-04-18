@@ -1,17 +1,24 @@
 import React from 'react';
-import { ProgramAccount } from '@project-serum/anchor';
+import { BN, Program, ProgramAccount, web3 } from '@project-serum/anchor';
+import { PublicKey } from '@solana/web3.js';
 import { Modal as BootstrapModal, Button } from 'react-bootstrap';
 import { calculateBarPercentage } from '../utils';
-import { web3 } from '@project-serum/anchor';
-const BN = require('bn.js');
 
 interface ModalProps {
     campaign: ProgramAccount;
+    program: Program;
+    walletKey: PublicKey;
     show: boolean;
     handleClose: () => void;
 }
 
-const Modal: React.FC<ModalProps> = ({ campaign, show, handleClose }) => {
+const Modal: React.FC<ModalProps> = ({
+    campaign,
+    program,
+    walletKey,
+    show,
+    handleClose,
+}) => {
     const donatedAmount =
         campaign.account.amountDonated / web3.LAMPORTS_PER_SOL;
     const targetAmount =

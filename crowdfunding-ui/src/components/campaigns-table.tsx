@@ -210,6 +210,8 @@ export const CampaignsTable: React.FC<CampaignsTableProps> = ({
             {selectedCampaign && (
                 <Modal
                     campaign={selectedCampaign}
+                    program={program}
+                    walletKey={walletKey}
                     show={showModal}
                     handleClose={() => setShowModal(false)}
                 />
