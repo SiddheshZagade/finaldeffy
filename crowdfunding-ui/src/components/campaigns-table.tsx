@@ -1,11 +1,9 @@
-import React, { useEffect, useState ,ChangeEvent} from 'react';
+import React, { useEffect, useState, ChangeEvent } from 'react';
 import { calculateBarPercentage } from '../utils';
 import { BN, Program, ProgramAccount, web3 } from '@project-serum/anchor';
 import { PublicKey } from '@solana/web3.js';
 import { Button, Card, Form } from 'react-bootstrap';
 import Modal from './Modal';
-
-
 
 interface CampaignsTableProps {
     program: Program;
@@ -19,7 +17,7 @@ export const CampaignsTable: React.FC<CampaignsTableProps> = ({
     const [campaigns, setCampaigns] = useState<ProgramAccount[]>([]);
     const [showModal, setShowModal] = useState(false);
     const [donationAmount, setDonationAmount] = useState(0);
-    
+
     const [selectedCampaign, setSelectedCampaign] =
         useState<ProgramAccount | null>(null);
 
@@ -33,25 +31,23 @@ export const CampaignsTable: React.FC<CampaignsTableProps> = ({
     }, [program, walletKey]);
 
     const donate = async (campaignKey: PublicKey, amount: number) => {
-        
         try {
-          const lamports = Math.floor(amount * web3.LAMPORTS_PER_SOL);
-          await program.rpc.donate(new BN(lamports), {
-            accounts: {
-              campaign: campaignKey,
-              user: walletKey,
-              systemProgram: web3.SystemProgram.programId,
-            },
-          });
-          await getAllCampaigns();
+            const lamports = Math.floor(amount * web3.LAMPORTS_PER_SOL);
+            await program.rpc.donate(new BN(lamports), {
+                accounts: {
+                    campaign: campaignKey,
+                    user: walletKey,
+                    systemProgram: web3.SystemProgram.programId,
+                },
+            });
+            await getAllCampaigns();
         } catch (err) {
-          console.error('Donate transaction error: ', err);
+            console.error('Donate transaction error: ', err);
         }
-      };
-      const handleDonationAmountChange = (e: ChangeEvent<any>) => {
+    };
+    const handleDonationAmountChange = (e: ChangeEvent<any>) => {
         setDonationAmount(Number(e.target.value));
     };
-    
 
     const withdraw = async (campaignKey: PublicKey) => {
         try {
@@ -60,19 +56,16 @@ export const CampaignsTable: React.FC<CampaignsTableProps> = ({
                     campaign: campaignKey,
                     user: walletKey,
                 },
-                
             });
-            
-            
         } catch (err) {
             console.error('Withdraw transaction error: ', err);
         }
     };
-    
+
     const allCampaigns = () => {
         return campaigns.map((c, i) => {
             const key = c.publicKey.toBase58();
-            
+
             const donatedAmount =
                 c.account.amountDonated / web3.LAMPORTS_PER_SOL;
             const targetAmount = parseFloat(c.account.targetAmount.toString());
@@ -80,9 +73,8 @@ export const CampaignsTable: React.FC<CampaignsTableProps> = ({
                 targetAmount,
                 donatedAmount
             );
-            
+
             return (
-                
                 <div
                     key={i}
                     className="sm:w-[288px] w-full rounded-[15px] bg-[#1c1c24] cursor-pointer"
@@ -98,8 +90,6 @@ export const CampaignsTable: React.FC<CampaignsTableProps> = ({
                     />
 
                     <div className="flex flex-col p-2">
-                        
-
                         <div className="block">
                             <h3 className="font-epilogue font-semibold text-[16px] text-white text-left leading-[26px] truncate mt-[10px]">
                                 {c.account.name}
@@ -119,9 +109,10 @@ export const CampaignsTable: React.FC<CampaignsTableProps> = ({
                                 }}
                             />
                         </div>
-                        <p className="mt-2 text-center font-medium text-gray-500">{progress}%</p>
-                       
-                       
+                        <p className="mt-2 text-center font-medium text-gray-500">
+                            {progress}%
+                        </p>
+
                         <div className="flex justify-between flex-wrap mt-[15px] gap-2">
                             <div className="flex flex-col">
                                 <h4 className="font-epilogue font-semibold text-[14px] text-[#b2b3bd] leading-[22px]">
@@ -146,34 +137,40 @@ export const CampaignsTable: React.FC<CampaignsTableProps> = ({
                         </div>
 
                         <div className="mt-6 mb-2 flex items-center justify-center">
-                <input
-                    type="number"
-                    min="0"
-                    step="0.01"
-                    className="py-2 px-3 border border-gray-400 rounded-md w-32"
-                    value={donationAmount}
-                    onChange={handleDonationAmountChange}
-                    onClick={(e) => e.stopPropagation()}
-                />
-                <Button
-                    variant="primary"
-                    
-                    onClick={(e) => {
-                        e.stopPropagation();
-                        donate(c.publicKey, donationAmount);
-                      }}
-                    
-                    
-                    
-                >
-                    Donate
-                </Button>
-                
-                {"CPD5JjAyHLFC8HdSTGwzfg6ocknzwDCiH7sLnhTQDzfh" === walletKey.toBase58() && (
-                    <Button variant="outline-primary" onClick={() => withdraw(c.publicKey)}>
-                        
-                        Withdraw
-                        </Button>
+                            <div className="relative">
+                                <input
+                                    type="number"
+                                    min="0"
+                                    step="0.1"
+                                    className="py-2 px-3 border border-gray-400 rounded-md w-32 bg-gray-100 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                    value={donationAmount}
+                                    onChange={handleDonationAmountChange}
+                                    onClick={(e) => e.stopPropagation()}
+                                    placeholder="Enter Amount"
+                                />
+                                <div className="absolute inset-y-0 right-0 flex items-center pr-3">
+                                    <span className="text-gray-500">SOL</span>
+                                </div>
+                            </div>
+
+                            <button
+                                className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 ml-4 rounded-md transition-colors duration-300"
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    donate(c.publicKey, donationAmount);
+                                }}
+                            >
+                                Donate
+                            </button>
+
+                            {'CPD5JjAyHLFC8HdSTGwzfg6ocknzwDCiH7sLnhTQDzfh' ===
+                                walletKey.toBase58() && (
+                                <Button
+                                    variant="outline-primary"
+                                    onClick={() => withdraw(c.publicKey)}
+                                >
+                                    Withdraw
+                                </Button>
                             )}
                         </div>
                     </div>
