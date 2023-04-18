@@ -47,7 +47,7 @@ export const CampaignsView: React.FC<CampaignsViewProps> = ({ network }) => {
 
     return (
         <div className="bg-[#0a192f] min-h-screen">
-            <div className="mt-24 mx-auto max-w-7xl">
+            <div className=" mx-auto max-w-7xl">
                 <Card className="CampaignsView p-5r border-0 ">
                     {!wallet.connected ? (
                         <p>Please connect your wallet</p>

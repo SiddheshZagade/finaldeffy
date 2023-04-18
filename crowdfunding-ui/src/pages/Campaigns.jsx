@@ -7,11 +7,7 @@ import { clusterApiUrl } from '@solana/web3.js';
 const network = clusterApiUrl(WalletAdapterNetwork.Devnet);
 
 function Campaigns() {
-    return (
-        <div className="bg-[#0a192f]">
-            <CampaignsView network={network} />
-        </div>
-    );
+    return <CampaignsView network={network} />;
 }
 
 export default Campaigns;
