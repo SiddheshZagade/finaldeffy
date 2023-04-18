@@ -25,7 +25,7 @@ function Example() {
 
     return (
         <div className="bg-transparent fixed top-0 w-full z-10 -mt-4">
-            <div className=" mx-auto px-6 pt-4 pb-8">
+            <div className=" mx-auto px-6 pt-4  pb-8">
                 <div className="bg-[#09162A] shadow-lg rounded-lg p-4 h-20 flex items-center justify-center">
                     <Navbar
                         color="bg-[#0a192f]"
