@@ -59,6 +59,13 @@ const Modal: React.FC<ModalProps> = ({ campaign, show, handleClose }) => {
                         </p>
                     </div>
                 </div>
+                <div className="mt-[30px]">
+                    <img
+                        src="https://www.pittsburghzoo.org/wp-content/uploads/lion8.jpg"
+                        alt="additional image"
+                        className="w-full h-[300px] object-cover rounded-tl-2xl rounded-tr-2xl mb-[20px]"
+                    />
+                </div>
             </BootstrapModal.Body>
             <BootstrapModal.Footer>
                 <Button variant="outline-primary" onClick={handleClose}>
