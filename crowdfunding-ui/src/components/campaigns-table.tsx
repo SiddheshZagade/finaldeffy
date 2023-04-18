@@ -163,7 +163,7 @@ export const CampaignsTable: React.FC<CampaignsTableProps> = ({
                                 Donate
                             </button>
 
-                            {'CPD5JjAyHLFC8HdSTGwzfg6ocknzwDCiH7sLnhTQDzfh' ===
+                            {c.account.owner.toBase58() ===
                                 walletKey.toBase58() && (
                                 <Button
                                     variant="outline-primary"
