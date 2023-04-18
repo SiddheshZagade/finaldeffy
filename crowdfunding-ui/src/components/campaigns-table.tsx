@@ -137,40 +137,34 @@ export const CampaignsTable: React.FC<CampaignsTableProps> = ({
                         </div>
 
                         <div className="mt-6 mb-2 flex items-center justify-center">
-                            <div className="relative">
-                                <input
-                                    type="number"
-                                    min="0"
-                                    step="0.1"
-                                    className="py-2 px-3 border border-gray-400 rounded-md w-32 bg-gray-100 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                                    value={donationAmount}
-                                    onChange={handleDonationAmountChange}
-                                    onClick={(e) => e.stopPropagation()}
-                                    placeholder="Enter Amount"
-                                />
-                                <div className="absolute inset-y-0 right-0 flex items-center pr-3">
-                                    <span className="text-gray-500">SOL</span>
-                                </div>
-                            </div>
-
-                            <button
-                                className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 ml-4 rounded-md transition-colors duration-300"
-                                onClick={(e) => {
-                                    e.stopPropagation();
-                                    donate(c.publicKey, donationAmount);
-                                }}
-                            >
-                                Donate
-                            </button>
-
-                            {'CPD5JjAyHLFC8HdSTGwzfg6ocknzwDCiH7sLnhTQDzfh' ===
-                                walletKey.toBase58() && (
-                                <Button
-                                    variant="outline-primary"
-                                    onClick={() => withdraw(c.publicKey)}
-                                >
-                                    Withdraw
-                                </Button>
+                <input
+                    type="number"
+                    min="0"
+                    step="0.01"
+                    className="py-2 px-3 border border-gray-400 rounded-md w-32"
+                    value={donationAmount}
+                    onChange={handleDonationAmountChange}
+                    onClick={(e) => e.stopPropagation()}
+                />
+                <Button
+                    variant="primary"
+                    
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        donate(c.publicKey, donationAmount);
+                      }}
+                    
+                    
+                    
+                >
+                    Donate
+                </Button>
+                
+                {"CPD5JjAyHLFC8HdSTGwzfg6ocknzwDCiH7sLnhTQDzfh" === walletKey.toBase58() && (
+                    <Button variant="outline-primary" onClick={() => withdraw(c.publicKey)}>
+                        
+                        Withdraw
+                        </Button>
                             )}
                         </div>
                     </div>
