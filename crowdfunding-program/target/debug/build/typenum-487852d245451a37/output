@@ -1,2 +1,0 @@
-cargo:rustc-env=TYPENUM_BUILD_CONSTS=c:\Users\sidde\Desktop\finaldeffy-main\crowdfunding-program\target\debug\build\typenum-487852d245451a37\out\consts.rs
-cargo:rustc-env=TYPENUM_BUILD_OP=c:\Users\sidde\Desktop\finaldeffy-main\crowdfunding-program\target\debug\build\typenum-487852d245451a37\out\op.rs
