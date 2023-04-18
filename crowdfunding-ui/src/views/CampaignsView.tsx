@@ -46,20 +46,22 @@ export const CampaignsView: React.FC<CampaignsViewProps> = ({ network }) => {
     console.log('imageUrl:', imageUrl); // Add this line
 
     return (
-        <div className="mt-24 mx-auto max-w-7xl">
-            <Card className="CampaignsView p-5r border-0">
-                {' '}
-                {/* Removed border */}
-                {!wallet.connected ? (
-                    <p>Please connect your wallet</p>
-                ) : (
-                    <CampaignsTable
-                        key={wallet.publicKey?.toBase58()} // Add key prop
-                        walletKey={wallet.publicKey!}
-                        program={program}
-                    />
-                )}
-            </Card>
+        <div className="App">
+            {' '}
+            {/* Added bg-gray-200 class */}
+            <div className="mt-24 mx-auto max-w-7xl">
+                <Card className="CampaignsView p-5r border-0">
+                    {!wallet.connected ? (
+                        <p>Please connect your wallet</p>
+                    ) : (
+                        <CampaignsTable
+                            key={wallet.publicKey?.toBase58()} // Add key prop
+                            walletKey={wallet.publicKey!}
+                            program={program}
+                        />
+                    )}
+                </Card>
+            </div>
         </div>
     );
 };
