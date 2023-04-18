@@ -46,9 +46,9 @@ export const CampaignsView: React.FC<CampaignsViewProps> = ({ network }) => {
     console.log('imageUrl:', imageUrl); // Add this line
 
     return (
-        <div className="bg-[#0a192f] min-h-screen">
-            <div className=" mx-auto max-w-7xl">
-                <Card className="CampaignsView p-5r border-0 ">
+        <div className="App bg-[#0a192f] h-screen">
+            <div className="mx-auto max-w-7xl h-full pt-24">
+                <Card className="CampaignsView p-5r border-0 bg-white rounded-lg overflow-hidden">
                     {!wallet.connected ? (
                         <p>Please connect your wallet</p>
                     ) : (
