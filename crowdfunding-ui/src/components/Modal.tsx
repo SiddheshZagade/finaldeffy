@@ -74,7 +74,7 @@ const Modal: React.FC<ModalProps> = ({
                 {showAdditionalImage && (
                     <div className="mt-[30px]">
                         <img
-                            src="https://www.pittsburghzoo.org/wp-content/uploads/lion8.jpg"
+                            src="https://docpulse.com/wp-content/uploads/2020/02/bill-copy.png"
                             alt="additional image"
                             className="w-full h-[300px] object-cover rounded-tl-2xl rounded-tr-2xl mb-[20px]"
                         />
