@@ -8,6 +8,8 @@ import Modal from './Modal';
 interface CampaignsTableProps {
     program: Program;
     walletKey: PublicKey;
+
+    
 }
 
 export const CampaignsTable: React.FC<CampaignsTableProps> = ({
@@ -140,7 +142,8 @@ export const CampaignsTable: React.FC<CampaignsTableProps> = ({
                                 </div>
                             </div>
 
-                            <div className="mt-6 mb-2 flex items-center justify-center">
+                            <div className="mt-6 mb-2 flex items-center justify-center" style={{display: "grid"}}>
+                            <div className="mt-6 mb-2 flex items-center justify-center" style={{justifyContent: "flex-start"}}>
                                 <div className="relative">
                                     <input
                                         type="number"
@@ -165,9 +168,10 @@ export const CampaignsTable: React.FC<CampaignsTableProps> = ({
                                         e.stopPropagation();
                                         donate(c.publicKey, donationAmount);
                                     }}
-                                >
+                                    >
                                     Donate
                                 </button>
+                                </div>
                                 {c.account.owner.toBase58() ===
                                     walletKey.toBase58() && (
                                     <div className="mt-6 mb-2 flex items-center justify-center">
@@ -216,7 +220,7 @@ export const CampaignsTable: React.FC<CampaignsTableProps> = ({
     };
 
     return (
-        <div className="flex flex-wrap justify-start bg-[#0a192f] gap-6">
+        <div className="flex flex-wrap justify-center bg-[#0a192f] gap-6">
             {allCampaigns()}
             {selectedCampaign && (
                 <Modal
