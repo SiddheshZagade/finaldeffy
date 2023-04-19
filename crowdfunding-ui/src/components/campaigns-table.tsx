@@ -198,7 +198,7 @@ export const CampaignsTable: React.FC<CampaignsTableProps> = ({
                                         </div>
 
                                         <button
-                                            className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 ml-4 rounded-md transition-colors duration-300"
+                                            className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 ml-4 rounded-md transition-colors duration-300"
                                             onClick={(e) => {
                                                 e.stopPropagation();
                                                 withdraw(

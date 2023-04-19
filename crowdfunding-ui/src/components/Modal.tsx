@@ -1,4 +1,5 @@
 import React from 'react';
+import {useState}  from 'react';
 import { BN, Program, ProgramAccount, web3 } from '@project-serum/anchor';
 import { PublicKey } from '@solana/web3.js';
 import { Modal as BootstrapModal, Button } from 'react-bootstrap';
@@ -24,7 +25,11 @@ const Modal: React.FC<ModalProps> = ({
     const targetAmount =
         campaign.account.targetAmount.toNumber() / web3.LAMPORTS_PER_SOL;
     const progress = calculateBarPercentage(targetAmount, donatedAmount);
-
+    const [showImage, setShowImage] = useState(false);
+    const [showAdditionalImage, setShowAdditionalImage] = useState(false);
+    const handleToggleImage = () => {
+        setShowAdditionalImage((prevState) => !prevState);
+    };
     return (
         <BootstrapModal show={show} onHide={handleClose}>
             <BootstrapModal.Header closeButton>
@@ -66,13 +71,22 @@ const Modal: React.FC<ModalProps> = ({
                         </p>
                     </div>
                 </div>
-                <div className="mt-[30px]">
-                    <img
-                        src="https://www.pittsburghzoo.org/wp-content/uploads/lion8.jpg"
-                        alt="additional image"
-                        className="w-full h-[300px] object-cover rounded-tl-2xl rounded-tr-2xl mb-[20px]"
-                    />
-                </div>
+                {showAdditionalImage && (
+                    <div className="mt-[30px]">
+                        <img
+                            src="https://www.pittsburghzoo.org/wp-content/uploads/lion8.jpg"
+                            alt="additional image"
+                            className="w-full h-[300px] object-cover rounded-tl-2xl rounded-tr-2xl mb-[20px]"
+                        />
+                    </div>
+                )}
+                <Button
+                    variant="outline-secondary"
+                    onClick={handleToggleImage}
+                    className="mt-[20px]"
+                >
+                    {showAdditionalImage ? 'Hide' : 'Show'} Proof Image
+                </Button>
             </BootstrapModal.Body>
             <BootstrapModal.Footer>
                 <Button variant="outline-primary" onClick={handleClose}>
