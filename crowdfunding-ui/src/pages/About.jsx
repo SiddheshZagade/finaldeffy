@@ -17,7 +17,7 @@ const About = () => {
               <p>Hi. Wecome to Deffy funds, nice to meet you. Please take a look around.</p>
             </div>
             <div>
-              <p>We are proud to present the Solana crowdfunding app, which was developed by a team of skilled engineers. The team includes Krish Patil and Siddesh Zagade, who worked tirelessly to build a secure and user-friendly platform for our users. We are grateful for their hard work and dedication to this project, and we are confident that their contributions will help us achieve our goal of revolutionizing the crowdfunding industry.
+              <p>We are proud to present the Solana crowdfunding app, which was developed by a team of skilled engineers. The team includes Krish Patil, Ivor Fernandes, Nitin Shetty and Siddesh Zagade, who worked tirelessly to build a secure and user-friendly platform for our users. We are grateful for their hard work and dedication to this project, and we are confident that their contributions will help us achieve our goal of revolutionizing the crowdfunding industry.
 </p>  
             </div>
           </div>

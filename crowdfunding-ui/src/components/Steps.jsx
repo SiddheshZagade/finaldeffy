@@ -33,8 +33,7 @@ const Steps = () => {
                                         Step 1
                                     </dt>
                                     <dd className="mt-2 text-base text-gray-500">
-                                        Receive funds directly to your Solana
-                                        wallet.
+                                        Create Phantom wallet and connect it to Deffy
                                     </dd>
                                 </div>
                             </div>
@@ -62,8 +61,7 @@ const Steps = () => {
                                         Step 2
                                     </dt>
                                     <dd className="mt-2 text-base text-gray-500">
-                                        Receive funds directly to your Solana
-                                        wallet.
+                                        Create Campaign by filling the form
                                     </dd>
                                 </div>
                             </div>
@@ -91,8 +89,7 @@ const Steps = () => {
                                         Step 3
                                     </dt>
                                     <dd class="mt-2 text-base text-gray-500">
-                                        Receive funds directly to your Solana
-                                        wallet.
+                                        Interact with your campign and explore others.
                                     </dd>
                                 </div>
                             </div>
