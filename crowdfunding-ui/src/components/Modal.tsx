@@ -1,5 +1,5 @@
 import React from 'react';
-import {useState}  from 'react';
+import { useState } from 'react';
 import { BN, Program, ProgramAccount, web3 } from '@project-serum/anchor';
 import { PublicKey } from '@solana/web3.js';
 import { Modal as BootstrapModal, Button } from 'react-bootstrap';
@@ -89,9 +89,27 @@ const Modal: React.FC<ModalProps> = ({
                 </Button>
             </BootstrapModal.Body>
             <BootstrapModal.Footer>
-                <Button variant="outline-primary" onClick={handleClose}>
-                    Close
-                </Button>
+                <div>
+                    <input
+                        type="number"
+                        min="0"
+                        step="0.1"
+                        className="py-2 px-3 border border-gray-400 rounded-md w-32 bg-gray-100 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        // value={withAmount}
+                        // onChange={handlewithAmountChange}
+                        // onClick={(e) => e.stopPropagation()}
+                        placeholder="SOL"
+                    />
+                    <button
+                        className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 ml-4 rounded-md transition-colors duration-300"
+                        // onClick={(e) => {
+                        //     e.stopPropagation();
+                        //     donate(c.publicKey, donationAmount);
+                        // }}
+                    >
+                        Donate
+                    </button>
+                </div>
             </BootstrapModal.Footer>
         </BootstrapModal>
     );
